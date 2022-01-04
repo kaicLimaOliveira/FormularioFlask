@@ -1,0 +1,72 @@
+body {
+    font-size: 1.3rem;
+}
+
+.hover-text:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+    text-shadow: 1px 1px 1px #000;
+}
+
+h2 {
+    font-size: 18px;
+    padding-right: 5em;
+}
+
+.input-check {
+    margin-left: 100px;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+.container-main {
+    width: 1120px;
+    justify-content: center;
+    display: flex;
+}
+
+.align-column {
+    width: 500px;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.align-columns-left {
+    float: left;
+    padding-left: 5px;
+}
+
+.align-columns-right {
+    float: right;
+}
+
+.btn-align {
+    padding: 10px;
+}
+
+.file {
+    border: 2px dashed;
+    font-size: 14px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.file:hover {
+    border: 2px dashed #2e979c;
+    color: #2e979c;
+}
+
+#errorEmail {
+    font-size: 10px;
+    color: red;
+}
+
+.modal-body {
+    font: 14px "Courier New";
+}
+
+.modal-title {
+    font: 16px Arial;
+    font-weight: 600;
+}

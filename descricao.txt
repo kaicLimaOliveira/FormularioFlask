@@ -1,0 +1,128 @@
+Para esse exercício, você deverá realizar um formulário de cadastro utilizando Bootstrap 4 e Jquery.
+O formulário em questão será um furmulário de instituição bancária.
+Os campos necessários são:
+
+- Razão social (texto)
+- Nome abreviado (texto)
+- CNPJ (texto)
+- Telefone (númérico)
+- Email de suporte (email)
+- Link de WhatsApp (texto)
+- Código identificador (numérico)
+- Ativo (select)
+
+- Ativar configurações adicionais (select)
+- Bandeira (input)
+- API token (texto)
+
+OBS: Os campos Bandeira e API só serão ativos quando o campo ativar configurações adicionais for selecionado como "Sim".
+De outra forma, deverão permanecer escondidos.
+
+Nesse formulário, você deverá realizar validações em todos os campos antes de enviá-los, e aplicar máscaras quando necessário.
+Segue as validações:
+
+- Razão social (texto)
+	- Se enviou vazio
+
+
+- Nome abreviado (texto)
+	- Se enviou vazio
+
+
+- CNPJ (texto)
+	- Se enviou vazio
+	- Se colocou algo diferente de números (usar regex)
+	- Se colocou quantidade de números diferente de 14
+	- Aplicar máscara de CNPJ (para ficar formatado no modelo 00.000.000/0000-00 enquanto o usuário digita)
+
+
+- Telefone (númérico)
+	- Se enviou vazio
+	- Se colocou algo diferente de números (usar regex)
+	- Aplicar máscara de 0800 (para ficar formatado no modelo 0800 000 0000 enquanto o usuário digita)
+
+
+- Email de suporte (email)
+	- Se enviou vazio
+	- Se enviou sem o "@"
+
+
+- Link de WhatsApp (texto)
+	- Se enviou vazio
+
+
+- Código identificador (numérico)
+	- Se enviou vazio
+	- Se colocou algo diferente de números (usar regex)
+
+
+
+- Bandeira (file)
+	- Se enviou vazio
+	- Se enviou um arquivo que não é uma imagem ou com tamanho muito grande		
+
+
+- API token (texto)
+	- Se enviou vazio
+
+
+Se todos os campos forem validados, então, agora, antes de enviar, será necessário realizar um ajax para verificar se
+o valor inserido no campo código é único, pois o usuário pode, por acidente, preencher com um código que já está sendo
+utilizado.
+
+Para isso, deverá ser feita uma requisição da seguinte forma:
+
+Rota: 127.0.0.1:8000/verify-code
+Método: POST
+Payload*: { code: "Código inserido pelo usuário" }
+
+Retornos:
+	- Se deu certo: {error: false, msg: "Código disponível"}
+	- Se deu errado: {error: true, msg: "Código repetido"}
+	- Se o código enviado no payload não foi enviado corretamente: {error: true, msg: "Código enviado incorretamente"}
+	- Se houve falha na conexão: {error: true, msg: "Falha na conexão"}
+
+*Payload são os dados a serem enviados no request
+
+
+!!!IMPORTANTE!!!
+Antes de construir no código, realizar o teste dessa API no Postman.
+
+
+
+Se o retorno da API retornar uma resposta positiva, dizendo que o código não é repetido, então, o envio do formulário
+deve ser finalmente realizado.
+
+OBS: Será necessário entender o conceito de Promises na verificação do código, assim como as keywords async e await. Quando
+Chegar nesse passo, falar com o responsável que lhe passou o exercício.
+
+
+
+Enviando o formulário:
+
+Rota: 127.0.0.1:8000/create
+Método: POST
+Payload: {
+	title: Razão social,
+	name: Nome abreviado,
+	cnpj: CNPJ,
+	phone: Telefone,
+	email: Email de suporte,
+	whats: Link de WhatsApp,
+	code: Código identificador,
+	active: Ativo (true ou false),
+	flag: Bandeira,
+	token: API token
+}
+
+Retornos:
+	- Se deu certo: {error: false, msg: "Criação realizada com sucesso"}
+	- Se deu errado: {error: true, msg: "Erro ao realizar a criação"}
+
+(Um erro personalizado será enviado especificamente para cada campo, indicando os detalhes na "msg", se o problema estiver nele)
+
+Se der certo, exibir para o usuário um alerta indicando que a operação foi realizado com sucesso.
+
+
+
+

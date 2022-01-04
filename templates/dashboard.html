@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="static/css/dashboard.css">
+{% endblock %}
+
+{% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="titleModal" class="modal-title">Formulário preenchido incorretamente </h5>
+            </div>
+            <div id="modalBody" class="modal-body">
+                Você deve preencher o formulário corretamente
+            </div>
+            <div class="modal-footer">
+                <button id="buttonExit" type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="formGroup" class="container-main p-4" method="post">
+    <section class="d-flex flex-column align-columns-left align-column">
+        <h2>Preencha os dados do formulario:</h2>
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">Razão Social:</label>
+            <input id="inputSocialReason" type="text" class="form-control form-control-sm">
+        </div>
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">Nome abreviado:</label>
+            <input id="inputName" type="text" class="form-control form-control-sm">
+        </div>
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">CNPJ:</label>
+            <input id="cnpj" type="text" class="form-control form-control-sm" maxlength="14">
+        </div>
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">Telefone:</label>
+            <input id="inputTel" maxlength="11" type="text" class="form-control form-control-sm ">
+        </div>
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">E-mail:</label>
+            <input id="inputEmail" type="email" onfocus="resetEmail()" onblur="validateEmail()"
+                class="form-control form-control-sm ">
+            <span id="errorEmail"></span>
+        </div>
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">Link do WhatsApp:</label>
+            <input id="inputLink" type="text" class="form-control form-control-sm " id="exampleFormControlInput1">
+        </div>
+    </section>
+    <section class="d-flex flex-column align-columns-right align-column pt-4">
+        <div class="mb-3 px-5 h4 col-sm-10 flex-column justify-content-end">
+            <label for="exampleFormControlInput1" class="form-label">Codigo identificador:</label>
+            <input id="inputCode" name="verifyCode" type="number" class="form-control form-control-sm">
+        </div>
+
+        <div class="form-check input-check mb-3 h4 col-sm-10">
+            <label for="flexCheckDefault" class="form-check-label">Ativo: </label>
+            <input id="flexCheckDefault" type="checkbox" class="form-check-input">
+        </div>
+
+
+        <div class="mb-3 px-5 h4 col-sm-10">
+            <label for="exampleFormControlInput1" class="form-label">Ativar configurações adicionais:</label>
+            <select id="valueSelect" class="form-select">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+
+        </div>
+        <div class="mb-3 px-5 h4 col-sm-10" id="isActiveOrNo">
+            <div>
+                <label for="exampleFormControlInput1" class="form-label">Bandeira:</label>
+                <input id="flagInput" type="file" name="file" class="form-control form-control-sm file">
+            </div>
+
+            <div>
+                <label for="exampleFormControlInput1" class="form-label">API token:</label>
+                <input id="inputAPI" type="text" class="form-control form-control-sm " id="exampleFormControlInput1">
+            </div>
+        </div>
+
+        <button id="btnSubmit" type="button" class="btn btn-primary btn-align" data-toggle="modal"
+            data-target="#modalAlert">
+            Enviar</button>
+
+    </section>
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="static/js/dashboard.js"></script>
+{% endblock %}
