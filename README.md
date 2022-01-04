@@ -34,6 +34,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 🚀 Como executar
 
 - Você precisa instalar o [Flask](https://flask.palletsprojects.com/en/2.0.x/installation/) e [Python](https://docs.python.org/3/) para executar este projeto.
+- Utilize venv\Scripts\activate.ps1 (ativação da venv - windows)
 
 **Clone o projeto**
 
@@ -44,6 +45,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 **Siga os passo abaixo**
 
 ```bash
+  #Instale a virtualenv"
+  py -3 -m venv venv
+
   #Instale as dependências do arquivo "requirements.txt"
   pip install -r requirements.txt
 
