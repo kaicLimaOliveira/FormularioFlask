@@ -21,13 +21,34 @@ const btnSubmit = document.getElementById('btnSubmit').addEventListener('click',
         document.getElementById('inputCode').value == '' ||
         flagInput.value == ''
     ) {
-        document.getElementById('titleModal').innerHTML = 'Formulário preenchido incorretamente'
-        document.getElementById('modalBody').innerHTML = 'Você deve preencher todos os campos'
         myModal.show()
     } else {
         document.getElementById("formGroup").submit()
     }
 })
+
+const email = document.getElementById('inputEmail')
+email.addEventListener('keyup', removeSpecialCharacters)
+
+const reason = document.getElementById('inputSocialReason')
+reason.addEventListener('keyup', removeSpecialCharacters)
+
+const link = document.getElementById('inputLink')
+link.addEventListener('keyup', removeSpecialCharacters)
+
+const inputName = document.getElementById('inputName')
+inputName.addEventListener('keyup', removeSpecialCharacters)
+
+const inputAPI = document.getElementById('inputAPI')
+inputAPI.addEventListener('keyup', removeSpecialCharacters)
+
+function removeSpecialCharacters() {
+    reason.value = reason.value.replace(/[^\w\s\d]/gi, '')
+    inputName.value = inputName.value.replace(/[^\w\s\d]/gi, '')
+    link.value = link.value.replace(/[^\w\s\d]/gi, '')
+    inputAPI.value = inputAPI.value.replace(/[^\w\s\d]/gi, '')
+}
+
 
 const flagInput = document.getElementById('flagInput')
 flagInput.addEventListener('change', () => {
@@ -65,6 +86,7 @@ cnpj.addEventListener('keyup', () => {
 const tel = document.getElementById('inputTel')
 tel.addEventListener('keyup', () => {
     tel.value = tel.value.replace(/\D/g, '')
+    tel.value = tel.value.replace(/\W|_/, '')
     if (tel.value.length >= 11) {
         const telFormat = tel.value.replace(/^(\d{4})(\d{3})(\d{4})/, "$1 $2 $3 ")
         tel.value = telFormat
@@ -72,7 +94,6 @@ tel.addEventListener('keyup', () => {
 })
 
 function validateEmail() {
-    let email = document.getElementById('inputEmail')
     let errorEmail = document.getElementById('errorEmail')
 
     if (!email.checkValidity()) {
@@ -106,5 +127,6 @@ const sendRequest = async () => {
             myModal.show();
         }
     })
+
 }
 

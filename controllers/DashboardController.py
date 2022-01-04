@@ -10,7 +10,10 @@ class Dashboard:
 
     def verify_code(self, request):
         verify_code = request.get_json()
-        code = int(verify_code['code'])
+        try:
+            code = int(verify_code['code'])
+        except Exception as e:
+            print(e)
 
         registered_codes = [1, 4, 5, 6, 7, 8, 12, 25, 34]
 
@@ -18,8 +21,14 @@ class Dashboard:
             return {
                 'Response': 'fulfilled'
             }
+        elif code not in registered_codes:
+            return {
+                'error': 'reject'
+            }
         else:
             return{
-                'Response': 'reject'
+                'Response': 'Erro 404 NOT FOUND'
             }
-            
+        
+    def create(self):
+        pass    

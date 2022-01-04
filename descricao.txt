@@ -66,7 +66,7 @@ Segue as validações:
 	- Se enviou vazio
 
 
-Se todos os campos forem validados, então, agora, antes de enviar, será necessário realizar um ajax para verificar se
+Se todos os campos forem validados, então, agora, antes de enviar, será necessário realizar uma requisição fetch para verificar se
 o valor inserido no campo código é único, pois o usuário pode, por acidente, preencher com um código que já está sendo
 utilizado.
 
