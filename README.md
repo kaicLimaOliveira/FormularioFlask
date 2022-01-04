@@ -15,7 +15,7 @@
 
 ## 💻 Projeto
 
-Esse projeto feito em Flask, foi um teste pra estudos.
+Esse projeto feito em Flask, foi um teste pra estudos de Flask com JS. Tem por objetivo ser um formulário de cadastro de uma instituição bancária. Utilizando algumas validações, rotas de autenticações e requisições ao back-end do Flask.
 
 ## 🔖 Layout
 
