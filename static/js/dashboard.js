@@ -9,9 +9,12 @@ document.getElementById('valueSelect').addEventListener('change', () => {
 let myModal = new bootstrap.Modal(document.getElementById("modalAlert"), {});
 
 //Valida os campos vazios
-const btnSubmit = document.getElementById('btnSubmit').addEventListener('click', (event) => {
-
+const btnSubmit = document.getElementById('btnSubmit').addEventListener('click', async (event) => {
     event.preventDefault() //valida o botão submit HTML e não envia sem fazer a logica if
+    const responseRequest = await sendRequest()
+    if(responseRequest == false)
+        return 
+
     if (document.getElementById('inputSocialReason').value == '' ||
         document.getElementById('inputName').value == '' ||
         document.getElementById('cnpj') == '' ||
@@ -25,6 +28,7 @@ const btnSubmit = document.getElementById('btnSubmit').addEventListener('click',
     } else {
         document.getElementById("formGroup").submit()
     }
+
 })
 
 const email = document.getElementById('inputEmail')
@@ -120,13 +124,14 @@ const sendRequest = async () => {
         body: JSON.stringify({ 'code': valueCode })
     })
 
-    const res = Object.entries(await response.json()).forEach(([key, value]) => {
-        if (value == 'fulfilled') {
-            document.getElementById('titleModal').innerHTML = 'Número já foi registrado'
-            document.getElementById('modalBody').innerHTML = 'O número digitado já existe, por favor,  digite outro'
-            myModal.show();
-        }
-    })
+    const res = await response.json()
+    if(res.error == true){
+        document.getElementById('titleModal').innerHTML = 'Ocorreu um erro ao enviar o codigo'
+        document.getElementById('modalBody').innerHTML = res.msg
+        myModal.show();
 
+        return false
+    }
+
+    return true
 }
-

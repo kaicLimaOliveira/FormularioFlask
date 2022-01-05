@@ -4,7 +4,13 @@ body {
     font-size: 16px;
 }
 
-@media (min-width: 580px) {
+@media(min-width: 354px){
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 576px) {
     html {
         font-size: 87.5%;
     }

@@ -14,4 +14,5 @@ def verify_code():
 
 @main.route('create', methods=['POST'])
 def create():
-    return DashboardController.Dashboard().create()
+    return DashboardController.Dashboard().create(request)
+

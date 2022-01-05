@@ -8,27 +8,56 @@ class Dashboard:
     def index(self):
         return render_template('dashboard.html')
 
-    def verify_code(self, request):
-        verify_code = request.get_json()
+    def verify_code(self, req):
         try:
-            code = int(verify_code['code'])
+            verify_code = req.get_json()
+            code = ''
+            try:
+                code = int(verify_code['code'])
+            except Exception as e:
+                print(e)
+                
+                return {'error': True, 'msg': 'Código enviado incorretamente'}
+
+            registered_codes = [1, 4, 5, 6, 7, 8, 12, 25, 34]
+
+            print(code)
+            if code in registered_codes:
+                print(code)
+                return {'error': True, 'msg': "Código"}
+            return {'error': False, 'msg': 'Código disponível'}
+                
+        except Exception as e:
+            return {'error': True, 'msg': "Falha na conexão"}
+        
+    def create(self, req):
+        print(req.form)
+        try:
+            code = req.form.get('verifyCode')
+            social_reason = req.form.get('inputSocialReason')
+            nome = req.form.get('inputName')
+            cnpj = req.form.get('cnpj')
+            tel = req.form.get('inputTel')
+            email = req.form.get('inputEmail')
+            
+            if not social_reason:
+                return redirect(url_for('main.index', msg='form-void'))
+            if not nome:
+                return redirect(url_for('main.index', msg='form-void'))
+            if not email:
+                return redirect(url_for('main.index', msg='form-void'))
+                
+            try:
+                int(code)
+                int(cnpj)
+                int(tel)
+            except:
+                return redirect(url_for('main.index', msg='invalid-code'))    
+            return redirect(url_for('main.index', msg='success'))
+        
+        
+        
         except Exception as e:
             print(e)
-
-        registered_codes = [1, 4, 5, 6, 7, 8, 12, 25, 34]
-
-        if code in registered_codes:
-            return {
-                'Response': 'fulfilled'
-            }
-        elif code not in registered_codes:
-            return {
-                'error': 'reject'
-            }
-        else:
-            return{
-                'Response': 'Erro 404 NOT FOUND'
-            }
-        
-    def create(self):
-        pass    
+    
+    
