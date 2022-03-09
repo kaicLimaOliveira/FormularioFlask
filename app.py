@@ -1,9 +1,8 @@
 from flask import Flask
-from routes import loginRoutes, mainRoutes
+from routes import  mainRoutes
 from flask_cors import CORS
 
 app = Flask(__name__)
-app.register_blueprint(loginRoutes.login)
 app.register_blueprint(mainRoutes.main)
 CORS(app)
 
